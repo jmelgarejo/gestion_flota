@@ -1,30 +1,117 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterViewChecked, AfterContentInit } from '@angular/core';
 
+//Metadata
+export interface RouteInfo {
+    path: string;
+    title: string;
+    type: string;
+    collapse?: string;
+    icontype: string;
+    // icon: string;
+    children?: ChildrenItems[];
+}
 
+export interface ChildrenItems {
+    path: string;
+    title: string;
+    ab: string;
+    type?: string;
+}
 
+//Menu Items
+export const ROUTES: RouteInfo[] = [{
+        path: '/dashboard',
+        title: 'Dashboard',
+        type: 'link',
+        icontype: 'nc-icon nc-bank'
+    },{
+        path: '/vehiculos',
+        title: 'Vehiculos',
+        type: 'sub',
+        collapse: 'vehiculos',
+        icontype: 'nc-icon nc-delivery-fast',
+        children: [
+            {path: 'ingresarRetorno', title: 'Ingresar Retorno', ab:'IR'},
+            {path: 'solicitarVehiculo', title: 'Solicitar Vehiculo', ab:'SV'},
+            {path: 'registrarSalida', title: 'Registrar Salida', ab:'RS'},
+            {path: 'vehiculosDisponibles', title: 'Vehiculos Disponibles', ab:'VD'},
+            {path: 'asignarAdministrativo', title: 'Asignar Administrativo', ab:'AA'}
+        ]
+    },{
+        path: '/despachos',
+        title: 'Despachos',
+        type: 'sub',
+        collapse: 'despachos',
+        icontype: 'nc-icon nc-paper',
+        children: [
+            {path: 'consultaPedidos', title: 'Consulta Pedidos', ab:'CP'},
+            {path: 'planificarPedido', title: 'Planificar Pedido', ab:'PP'}
+        ]
+    }/* ,{
+        path: '/forms',
+        title: 'Forms',
+        type: 'sub',
+        collapse: 'forms',
+        icontype: 'nc-icon nc-ruler-pencil',
+        children: [
+            {path: 'regular', title: 'Regular Forms', ab:'RF'},
+            {path: 'extended', title: 'Extended Forms', ab:'EF'},
+            {path: 'validation', title: 'Validation Forms', ab:'VF'},
+            {path: 'wizard', title: 'Wizard', ab:'W'}
+        ]
+    },{
+        path: '/tables',
+        title: 'Tables',
+        type: 'sub',
+        collapse: 'tables',
+        icontype: 'nc-icon nc-single-copy-04',
+        children: [
+            {path: 'regular', title: 'Regular Tables', ab:'RT'},
+            {path: 'extended', title: 'Extended Tables', ab:'ET'},
+            {path: 'datatables.net', title: 'Datatables.net', ab:'DT'}
+        ]
+    },{
+        path: '/maps',
+        title: 'Maps',
+        type: 'sub',
+        collapse: 'maps',
+        icontype: 'nc-icon nc-pin-3',
+        children: [
+            {path: 'google', title: 'Google Maps', ab:'GM'},
+            {path: 'fullscreen', title: 'Full Screen Map', ab:'FSM'},
+            {path: 'vector', title: 'Vector Map', ab:'VM'}
+        ]
+    },{
+        path: '/widgets',
+        title: 'Widgets',
+        type: 'link',
+        icontype: 'nc-icon nc-box'
 
-/* export const ROUTES = [
-    { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
-    { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
-     { path: '/user',          title: 'User Profile',      icon:'nc-single-02',  class: '' }, 
-    { path: '/table',         title: 'Vehículos',        icon:'nc-bus-front-12',    class: '', subItems: [
-        { path: '/asignarAdministrativo', title: 'Asignar Administrativo', icon: 'nc-badge', class: '' },
-        { path: '/solicitarVehiculo', title: 'Solicitar Vehiculo', icon: 'nc-delivery-fast', class: '' },
-        { path: '/registrarSalida', title: 'Registrar Salida', icon: 'nc-book-bookmark', class: '' }
-      ]},
-    { path: '/typography',    title: 'Despachos',        icon:'nc-paper', class: '', subItems: [
-        { path: '/icons', title: 'Listado de Entregas', icon: 'nc-paper', class: '' }
-      ]}
-]; */
+    },{
+        path: '/charts',
+        title: 'Charts',
+        type: 'link',
+        icontype: 'nc-icon nc-chart-bar-32'
 
-export const ROUTES = [
-    { path: '/dashboard',     title: 'Dashboard',         icon:'nc-bank',       class: '' },
-    { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
-    { path: '/asignarAdministrativo', title: 'Asignar Administrativo', icon: 'nc-badge', class: '' },
-    { path: '/solicitarVehiculo', title: 'Solicitar Vehiculo', icon: 'nc-delivery-fast', class: '' },
-    { path: '/registrarSalida', title: 'Registrar Salida', icon: 'nc-book-bookmark', class: '' },
-    { path: '/listadoEntregas', title: 'Listado de Entregas', icon: 'nc-paper', class: '' }
- 
+    },{
+        path: '/calendar',
+        title: 'Calendar',
+        type: 'link',
+        icontype: 'nc-icon nc-calendar-60'
+    },{
+        path: '/pages',
+        title: 'Pages',
+        collapse: 'pages',
+        type: 'sub',
+        icontype: 'nc-icon nc-book-bookmark',
+        children: [
+            {path: 'timeline', title: 'Timeline Page', ab:'T'},
+            {path: 'user', title: 'User Page', ab:'UP'},
+            {path: 'login', title: 'Login Page', ab:'LP'},
+            {path: 'register', title: 'Register Page', ab:'RP'},
+            {path: 'lock', title: 'Lock Screen Page', ab:'LSP'}
+        ]
+    } */
 ];
 
 @Component({
@@ -33,10 +120,18 @@ export const ROUTES = [
     templateUrl: 'sidebar.component.html',
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
     public menuItems: any[];
+    isNotMobileMenu(){
+        if( window.outerWidth > 991){
+            return false;
+        }
+        return true;
+    }
+
     ngOnInit() {
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
-    
+    ngAfterViewInit(){
+    }
 }
