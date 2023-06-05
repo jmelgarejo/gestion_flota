@@ -7,19 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class LlamadaApiService {
 
+  private baseUrl = 'https://pokeapi.co/api/v2/pokemon';
+
   constructor(private http: HttpClient) { }
-  
-  
-  getData(): Observable<any> {
-    try {
-      const url = 'https://pokeapi.co/api/v2/pokemon/';
-      const response = this.http.get(url);
-      console.log("soy servicio response");
-      console.log(response);
-      return response
-    } catch (error) {
-      console.log(error);
-      
-    }
+
+  async getPokemon(offset = 20, limit = 20) {
+    const result = await this.http.get<any>(`${this.baseUrl}/?offset=${offset}&limit=${limit}`).toPromise();
+    return result.results
   }
 }

@@ -6,7 +6,7 @@ import { IngresarRetornoComponent } from './pages/ingresar-retorno/ingresar-reto
 import { RegistrarIncidenteComponent } from './pages/registrar-incidente/registrar-incidente.component';
 import { VehiculosDisponiblesComponent } from './pages/vehiculos-disponibles/vehiculos-disponibles.component';
 import { AsignarAdministrativoComponent } from './pages/asignar-administrativo/asignar-administrativo.component';
-
+import { ListadoPokemonComponent } from './pages/listado-pokemon/listado-pokemon.component';
 const routes: Routes = [
   { path: 'solicitarVehiculo', component: SolicitarVehiculosComponent},
   { path: 'registrarSalida', component: RegistrarSalidaComponent},
@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'registrarIncidente', component: RegistrarIncidenteComponent},
   { path: 'vehiculosDisponibles', component: VehiculosDisponiblesComponent},
   { path: 'asignarAdministrativo', component: AsignarAdministrativoComponent},
+  { path: 'listadoPokemon', component: ListadoPokemonComponent},
 
 
 ];

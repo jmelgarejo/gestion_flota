@@ -35,7 +35,8 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'solicitarVehiculo', title: 'Solicitar Vehiculo', ab:'SV'},
             {path: 'registrarSalida', title: 'Registrar Salida', ab:'RS'},
             {path: 'vehiculosDisponibles', title: 'Vehiculos Disponibles', ab:'VD'},
-            {path: 'asignarAdministrativo', title: 'Asignar Administrativo', ab:'AA'}
+            {path: 'asignarAdministrativo', title: 'Asignar Administrativo', ab:'AA'},
+            {path: 'listadoPokemon', title: 'Listado POKEMONS', ab:'LP'}
         ]
     },{
         path: '/despachos',

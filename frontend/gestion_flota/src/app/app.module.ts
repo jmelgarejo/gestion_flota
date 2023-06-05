@@ -11,7 +11,7 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     imports:[
         BrowserAnimationsModule,
@@ -19,6 +19,7 @@ import { AppRoutes } from './app.routing';
         RouterModule.forRoot(AppRoutes,{
           useHash: true
         }),
+        HttpClientModule,
         NgbModule,
         SidebarModule,
         NavbarModule,
