@@ -47,7 +47,8 @@ export const AppRoutes: Routes = [{
         {
           path: 'despachos',
           loadChildren: () => import('./modules/despachos/despachos.module').then(x => x.DespachosModule),
-        }]
+        }
+        ]
         },{
             path: '',
             component: AuthLayoutComponent,
