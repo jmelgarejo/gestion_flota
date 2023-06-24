@@ -1,9 +1,28 @@
 package com.restfull.core.entities;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="camion")
 public class Camion {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_camion")
     private int idCamion;
+	
+	@Column(name="vehiculo_id")
     private int vehiculoId;
+	
+	@Column(name="capacidad")
     private float capacidad;
+	
+	@Column(name="tipo")
     private String tipo;
 
     // Constructor vacío
