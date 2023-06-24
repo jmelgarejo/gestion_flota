@@ -11,6 +11,10 @@ import { VehiculosDisponiblesComponent } from './pages/vehiculos-disponibles/veh
 import { AsignarAdministrativoComponent } from './pages/asignar-administrativo/asignar-administrativo.component';
 import { ListadoPokemonComponent } from './pages/listado-pokemon/listado-pokemon.component';
 
+
+
+
+
 @NgModule({
   declarations: [
     SolicitarVehiculosComponent,
@@ -19,7 +23,10 @@ import { ListadoPokemonComponent } from './pages/listado-pokemon/listado-pokemon
     RegistrarIncidenteComponent,
     VehiculosDisponiblesComponent,
     AsignarAdministrativoComponent,
-    ListadoPokemonComponent
+    ListadoPokemonComponent,
+   
+   
+   
   ],
   imports: [
     CommonModule,

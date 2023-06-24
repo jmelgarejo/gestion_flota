@@ -1,6 +1,10 @@
+import { FormregsalComponent } from './modules/vehiculos/pages/registrar-salida/formregsal.component';
+
+
+
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent }   from './app.component';
@@ -12,13 +16,21 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
+import { AsignarAdministrativoService } from './modules/vehiculos/pages/asignar-administrativo/asignar-administrativo.service';
+import { FormComponent } from './modules/vehiculos/pages/asignar-administrativo/form.component';
+import { RegistrarSalidaService } from './modules/vehiculos/pages/registrar-salida/registrar-salida.service';
+
+
+
 @NgModule({
+   
     imports:[
         BrowserAnimationsModule,
         FormsModule,
         RouterModule.forRoot(AppRoutes,{
-          useHash: true
+         useHash: true
         }),
+       
         HttpClientModule,
         NgbModule,
         SidebarModule,
@@ -26,10 +38,16 @@ import { HttpClientModule } from '@angular/common/http';
         FooterModule,
         FixedPluginModule
     ],
+    providers:[ AsignarAdministrativoService, RegistrarSalidaService],
+    
+
+    
     declarations: [
         AppComponent,
         AdminLayoutComponent,
         AuthLayoutComponent,
+        FormComponent,
+        FormregsalComponent,
     ],
     bootstrap:    [ AppComponent ]
 })

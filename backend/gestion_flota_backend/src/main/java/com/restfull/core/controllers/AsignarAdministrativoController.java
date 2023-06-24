@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.restfull.core.entities.AsignarAdministrativo;
 import com.restfull.core.services.IAsignarAdministrativoService;
 
-
+@CrossOrigin(origins= {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class AsignarAdministrativoController {
@@ -49,10 +50,10 @@ public class AsignarAdministrativoController {
 		
 		AsignarAdministrativo asignarAdministrativoActual = asignarAdministrativoService.findById(id);
 		
-		asignarAdministrativoActual.setApellido(asignarAdministrativo.getApellido());
-		asignarAdministrativoActual.setNombre(asignarAdministrativo.getNombre());
+		asignarAdministrativoActual.setCliente(asignarAdministrativo.getCliente());
+		asignarAdministrativoActual.setRutSolicitante(asignarAdministrativo.getRutSolicitante());
 		asignarAdministrativoActual.setPatente(asignarAdministrativo.getPatente());
-		asignarAdministrativoActual.setEstado(asignarAdministrativo.getEstado());
+		asignarAdministrativoActual.setAdministrativo(asignarAdministrativo.getAdministrativo());
 		return asignarAdministrativoService.save(asignarAdministrativoActual);
 	}
 	

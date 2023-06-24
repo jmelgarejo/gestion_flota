@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 
+
+
 export const AppRoutes: Routes = [{
         path: '',
         redirectTo: 'dashboard',
@@ -47,13 +49,19 @@ export const AppRoutes: Routes = [{
         {
           path: 'despachos',
           loadChildren: () => import('./modules/despachos/despachos.module').then(x => x.DespachosModule),
-        }]
+        },
+        { path: 'asignar-administrativo/form', 
+        loadChildren: () => import('./modules/vehiculos/pages/asignar-administrativo/form.component').then(x=>x.FormComponent),
+        
+      }]
         },{
             path: '',
             component: AuthLayoutComponent,
             children: [{
                 path: 'pages',
                 loadChildren:() => import( './pages/pages.module').then(x=>x.PagesModule)
-            }]
-        }
+            }]},
+        
+            
+        
 ];

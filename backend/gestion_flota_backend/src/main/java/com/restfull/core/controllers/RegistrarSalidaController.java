@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.restfull.core.entities.RegistrarSalida;
 import com.restfull.core.services.IRegistrarSalidaService;
-
+@CrossOrigin(origins= {"http://localhost:4200"})
 @RestController
 @RequestMapping("/api")
 public class RegistrarSalidaController {
