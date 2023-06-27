@@ -1,7 +1,3 @@
-import { FormregsalComponent } from './modules/vehiculos/pages/registrar-salida/formregsal.component';
-
-
-
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,11 +12,6 @@ import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { AppRoutes } from './app.routing';
 import { HttpClientModule } from '@angular/common/http';
-import { AsignarAdministrativoService } from './modules/vehiculos/pages/asignar-administrativo/asignar-administrativo.service';
-import { FormComponent } from './modules/vehiculos/pages/asignar-administrativo/form.component';
-import { RegistrarSalidaService } from './modules/vehiculos/pages/registrar-salida/registrar-salida.service';
-
-
 
 @NgModule({
    
@@ -38,7 +29,7 @@ import { RegistrarSalidaService } from './modules/vehiculos/pages/registrar-sali
         FooterModule,
         FixedPluginModule
     ],
-    providers:[ AsignarAdministrativoService, RegistrarSalidaService],
+    providers:[ ],
     
 
     
@@ -46,8 +37,7 @@ import { RegistrarSalidaService } from './modules/vehiculos/pages/registrar-sali
         AppComponent,
         AdminLayoutComponent,
         AuthLayoutComponent,
-        FormComponent,
-        FormregsalComponent,
+
     ],
     bootstrap:    [ AppComponent ]
 })

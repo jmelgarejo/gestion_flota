@@ -1,32 +1,114 @@
-<div class="card border-primary mb-3" style="max-width: 18 rem;">
-<div class="card-headers">Asignar Administrativo</div>
-<div class="card-body text-primary">
-  <h5 class="card-title">                    Listado</h5>
- <div class="my-2 text-left">
-    <button class="button btn-rounder btn-primary" type="button" [routerLink]="['vehiculos/editAsigAdm']">Asignar Admnistrativo</button>
- </div>
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>cliente</th>
-        <th>rut Solicitanted</th>
-        <th>patente</th>
-        <th>Fecha</th>
-         <th>administrativo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let asig of asigAdmin">
-        <td>{{asig.id}}</td>
-        <td>{{asig.cliente}}</td>
-        <td>{{asig.rutSolicitante}}</td>
-        <td>{{asig.patente}}</td>
-        <td>{{asig.createAt}}</td>
-        <td>{{asig.administrativo}}</td>
-        
-      </tr>
-    </tbody>
-  </table>
-</div>
-</div>
+<div class="main-content">
+    <div class="row">
+        <div class="col-md-12">
+  
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title" style="display: contents;">Registrar Salida</h4>
+                <button class="btn btn-info" style="margin: 0 10px 5px 20px; padding: 10px 10px 10px 10px;" data-toggle="modal" data-target="#myModal">
+                  <span class="btn-label">
+                    <i class="nc-icon nc-simple-add"></i>
+                  </span>
+                  Nuevo
+                </button>
+                <!-- Classic Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header justify-content-center">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <i class="nc-icon nc-simple-remove"></i>
+                        </button>
+                        <h4 class="title title-up">Nueva Solicitud</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                              <div class="card-body ">
+                                <form method="#" action="#">
+                                  <label>Nombre Cliente</label>
+                                  <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Ingrese Cliente">
+                                  </div>
+                                  <label>Rut Solicitante</label>
+                                  <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Ingrese rut">
+                                  </div>
+                                  <label>Tipo de Vehículo</label>
+                                  <div class="form-group">
+                                    <select class="form-control form-control-sm">
+                                        <option>Seleccione Tipo</option>
+                                        <option>Camioneta</option>
+                                        <option>Rampla</option>
+                                        <option>Camión 3/4</option>
+                                        <option>Otro</option>
+                                      </select>
+                                  </div>
+                                  <label>Fecha Solicitud</label>
+                                  <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="Fecha">
+                                  </div>
+                                  <label>Descripción</label>
+                                  <div class="form-group">
+                                    <textarea class="form-control" aria-label="Large"></textarea>
+                                  </div>
+                                  
+                                </form>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <div class="right-side mx-0">
+                          <button type="button" class="btn btn-danger btn-link">Aceptar</button>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="left-side mx-0">
+                          <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Fin Modal -->
+              </div>
+                <div class="card-body">
+                  <div class="toolbar">
+                        <!--        Here you can write extra buttons/actions for the toolbar              -->
+                        
+                    </div>
+                    
+                      <table id="datatable-AA" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                            <thead style="text-align: center;">
+                                <tr>
+                                  <th>{{ dataTable.headerRow[0] }}</th>
+                                  <th>{{ dataTable.headerRow[1] }}</th>
+                                  <th>{{ dataTable.headerRow[2] }}</th>
+                                  <th>{{ dataTable.headerRow[3] }}</th>
+                                  <th>{{ dataTable.headerRow[4] }}</th>
+                                </tr>
+                            </thead>
+                            <tbody style="text-align: center;">
+                                <tr *ngFor="let admin of adminList">
+                                    <td>{{salida.id}}</td>
+                                    <td>{{salida.patente}}</td>
+                                    <td>{{salida.estado}}</td>
+                                    <td>{{salida.createAT}}</td>
+                                    <td>
+                                      <a href="javascript:void(0)" class="btn btn-warning btn-link btn-icon btn-sm edit"><i class="fa fa-edit"></i></a>
+                                      <a href="javascript:void(0)" class="btn btn-danger btn-link btn-icon btn-sm remove"><i class="fa fa-times"></i></a>
+                                    </td>
+  
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <!-- end content-->
+            </div>
+            <!--  end card  -->
+        </div>
+        <!-- end col-md-12 -->
+    </div>
+    <!-- end row -->
+  </div>
+  

@@ -20,6 +20,31 @@ export interface ChildrenItems {
 
 //Menu Items
 export const ROUTES: RouteInfo[] = [{
+    path: '/vehiculos',
+    title: 'Vehiculos',
+    type: 'sub',
+    collapse: 'vehiculos',
+    icontype: 'nc-icon nc-delivery-fast',
+    children: [
+        {path: 'ingresarRetorno', title: 'Ingresar Retorno', ab:'IR'},
+        {path: 'solicitarVehiculo', title: 'Solicitar Vehiculo', ab:'SV'},
+        {path: 'registrarSalida', title: 'Registrar Salida', ab:'RS'},
+        {path: 'vehiculosDisponibles', title: 'Vehiculos Disponibles', ab:'VD'}    ]
+},{
+    path: '/despachos',
+    title: 'Despachos',
+    type: 'sub',
+    collapse: 'despachos',
+    icontype: 'nc-icon nc-paper',
+    children: [
+        {path: 'consultaPedidos', title: 'Consulta Pedidos', ab:'CP'},
+        {path: 'planificarPedido', title: 'Planificar Pedido', ab:'PP'}
+    ]
+}
+];
+
+
+/* export const ROUTES: RouteInfo[] = [{
         path: '/dashboard',
         title: 'Dashboard',
         type: 'link',
@@ -48,7 +73,7 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'consultaPedidos', title: 'Consulta Pedidos', ab:'CP'},
             {path: 'planificarPedido', title: 'Planificar Pedido', ab:'PP'}
         ]
-    }/* ,{
+    } ,{
         path: '/forms',
         title: 'Forms',
         type: 'sub',
@@ -112,8 +137,8 @@ export const ROUTES: RouteInfo[] = [{
             {path: 'register', title: 'Register Page', ab:'RP'},
             {path: 'lock', title: 'Lock Screen Page', ab:'LSP'}
         ]
-    } */
-];
+    }
+]; */
 
 @Component({
     moduleId: module.id,

@@ -8,19 +8,16 @@ const URL = environment.url;
 @Injectable({
   providedIn: 'root'
 })
-export class LlamadaApiService {
-
-  private baseUrl = 'https://pokeapi.co/api/v2/pokemon';
-  //private baseUrl = 'http://167.99.24.209:8080/solicitud';
-  //private baseUrl = URL+'/camiones'
+export class AsignarAdministrativosService {
+  private baseUrl = URL+'/api/asignadmin'
   constructor(private http: HttpClient) { }
 
-  async getPokemon(offset = 20, limit = 20) {
+  async getAdministrativos(offset = 20, limit = 20) {
     const result = await this.http.get<any>(`${this.baseUrl}`).toPromise();
-    //const result = await this.http.get<any>(`${this.baseUrl}`).toPromise();
-    console.log("RESULTADO");
+
+    console.log("ADMINISTRATIVOS");
     console.log(result);
     
-    return result.results
+    return result
   }
 }

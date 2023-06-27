@@ -50,10 +50,7 @@ export const AppRoutes: Routes = [{
           path: 'despachos',
           loadChildren: () => import('./modules/despachos/despachos.module').then(x => x.DespachosModule),
         },
-        { path: 'asignar-administrativo/form', 
-        loadChildren: () => import('./modules/vehiculos/pages/asignar-administrativo/form.component').then(x=>x.FormComponent),
-        
-      }]
+        ]
         },{
             path: '',
             component: AuthLayoutComponent,

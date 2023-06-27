@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SolicitarVehiculoService } from '../../services/solicitar-vehiculo.service';
+import Swal from 'sweetalert2'
+import { FormControl, FormGroup } from '@angular/forms';
 
 declare var $:any;
 
@@ -14,44 +17,64 @@ declare interface DataTable {
   styleUrls: ['./solicitar-vehiculos.component.css']
 })
 export class SolicitarVehiculosComponent implements OnInit {
+
+  maxId: any;
+  form: FormGroup;
+  formEdit: FormGroup;
+  data: any;
+  solicitudList: any[];
   public dataTable: DataTable;
+
+  constructor(private solicitudService: SolicitarVehiculoService) { }
   ngOnInit(){
+
+    this.form = new FormGroup({
+      clienteID: new FormControl(''),
+      planificacionID:new FormControl(''),
+      estado:new FormControl(''),
+      origen:new FormControl(''),
+      destino:new FormControl(''),
+      fecha_solicitud:new FormControl(''),
+      fecha_entrega:new FormControl('')
+    });
+
+    this.formEdit = new FormGroup({
+      id:new FormControl(''),
+      patente: new FormControl(''),
+      clienteID: new FormControl(''),
+      planificacionID:new FormControl(''),
+      estado:new FormControl(''),
+      origen:new FormControl(''),
+      destino:new FormControl(''),
+      fecha_solicitud:new FormControl(''),
+      fecha_entrega:new FormControl('')
+    });
+
+    this.getSolicitudes();
+  }
+
+  async getSolicitudes() {
+    try {
+      this.solicitudList = await this.solicitudService.getSolicitudes();
+      this.maxId = this.solicitudList.length;
+      console.log("this.maxId");
+      console.log(this.maxId);
+      
+      console.log("LISTADO SOLICITUDES EN EL FRONT");
+      
+      console.log(this.solicitudList);
+
       this.dataTable = {
-          headerRow: [ 'ID', 'Cliente', 'Rut Solicitante', 'Vehículo', 'Fecha Solicitud', 'Descripción', 'Acciones' ],
-          footerRow: [],
-          dataRows: [
-            ['1', 'Apple', '18446622-8', 'Camioneta', '2023-02-03', 'Se solicita Camioneta para traslado de materiales de construcción livianos'],
-            ['2', 'Samsung', '15283691-6', 'Camión 3/4', '2023-05-15', 'Se solicita Camión 3/4 para transporte de muebles de oficina'],
-            ['3', 'Microsoft', '21674539-2', 'Rampla', '2023-08-21', 'Se solicita Rampla para traslado de maquinaria pesada'],
-            ['4', 'Google', '19874320-9', 'Camioneta', '2023-03-10', 'Se solicita Camioneta para reparto de productos alimenticios'],
-            ['5', 'Amazon', '22750976-1', 'Camión 3/4', '2023-07-05', 'Se solicita Camión 3/4 para transporte de mercadería a granel'],
-            ['6', 'Apple', '17655381-4', 'Rampla', '2023-04-17', 'Se solicita Rampla para transporte de contenedores marítimos'],
-            ['7', 'Samsung', '15167283-5', 'Camioneta', '2023-09-28', 'Se solicita Camioneta para entrega de paquetes en zonas urbanas'],
-            ['8', 'Microsoft', '20679342-3', 'Camión 3/4', '2023-11-12', 'Se solicita Camión 3/4 para transporte de materiales de construcción'],
-            ['9', 'Google', '19475162-7', 'Rampla', '2023-10-03', 'Se solicita Rampla para transporte de vehículos automotores'],
-            ['10', 'Amazon', '22134599-8', 'Camioneta', '2023-12-30', 'Se solicita Camioneta para reparto de flores y plantas'],
-            ['11', 'Apple', '17239825-2', 'Camión 3/4', '2024-02-08', 'Se solicita Camión 3/4 para transporte de electrodomésticos'],
-            ['12', 'Samsung', '15573291-3', 'Rampla', '2024-03-25', 'Se solicita Rampla para transporte de productos químicos'],
-            ['13', 'Microsoft', '20349985-6', 'Camioneta', '2024-05-02', 'Se solicita Camioneta para traslado de equipos de sonido'],
-            ['14', 'Google', '19073288-1', 'Camión 3/4', '2024-06-18', 'Se solicita Camión 3/4 para distribución de productos de limpieza'],
-            ['15', 'Amazon', '21997674-7', 'Rampla', '2024-07-31', 'Se solicita Rampla para transporte de carga refrigerada'],
-            ['16', 'Apple', '16837843-9', 'Camioneta', '2024-09-13', 'Se solicita Camioneta para reparto de productos farmacéuticos'],
-            ['17', 'Samsung', '14936721-4', 'Camión 3/4', '2024-10-28', 'Se solicita Camión 3/4 para transporte de materiales de construcción'],
-            ['18', 'Microsoft', '21674539-2', 'Rampla', '2025-01-06', 'Se solicita Rampla para transporte de maquinaria agrícola'],
-            ['19', 'Google', '19475162-7', 'Camioneta', '2025-02-19', 'Se solicita Camioneta para reparto de productos perecederos'],
-            ['20', 'Amazon', '22134599-8', 'Camión 3/4', '2025-04-05', 'Se solicita Camión 3/4 para transporte de materiales de construcción'],
-            ['21', 'Apple', '17239825-2', 'Rampla', '2025-06-14', 'Se solicita Rampla para transporte de productos químicos'],
-            ['22', 'Samsung', '15573291-3', 'Camioneta', '2025-08-25', 'Se solicita Camioneta para reparto de productos electrónicos'],
-            ['23', 'Microsoft', '20349985-6', 'Camión 3/4', '2025-10-07', 'Se solicita Camión 3/4 para transporte de muebles de hogar'],
-            ['24', 'Google', '19073288-1', 'Rampla', '2025-11-22', 'Se solicita Rampla para transporte de carga a granel'],
-            ['25', 'Amazon', '21997674-7', 'Camioneta', '2026-01-31', 'Se solicita Camioneta para reparto de paquetes pequeños'],
-            ['26', 'Apple', '16837843-9', 'Camión 3/4', '2026-03-18', 'Se solicita Camión 3/4 para transporte de productos químicos'],
-            ['27', 'Samsung', '14936721-4', 'Rampla', '2026-05-05', 'Se solicita Rampla para transporte de productos alimenticios'],
-            ['28', 'Microsoft', '21674539-2', 'Camioneta', '2026-06-20', 'Se solicita Camioneta para reparto de productos de belleza'],
-            ['29', 'Google', '19475162-7', 'Camión 3/4', '2026-08-08', 'Se solicita Camión 3/4 para transporte de equipos de construcción'],
-            ['30', 'Amazon', '22134599-8', 'Rampla', '2026-09-23', 'Se solicita Rampla para transporte de productos congelados']
-          ]
-       };
+        headerRow: [ 'ID Solicitud','Estado', 'Origen','Destino', 'Planificación','Acciones'],
+        footerRow: [],
+        dataRows: [
+          this.solicitudList
+        ]
+      };
+
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   ngAfterViewInit(){
@@ -69,13 +92,13 @@ export class SolicitarVehiculosComponent implements OnInit {
 
     });
 
-    var table = $('#datatable-SV').DataTable();
+    let table = $('#datatable-SV').DataTable();
 
     // Edit record
     table.on('click', '.edit', function() {
       let $tr = $(this).closest('tr');
 
-      var data = table.row($tr).data();
+      let data = table.row($tr).data();
       alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
     });
 
@@ -91,4 +114,103 @@ export class SolicitarVehiculosComponent implements OnInit {
       alert('You clicked on Like button');
     });
   }
+
+
+  async enviarDatos() {
+
+    console.log("etre enviar");
+    
+    const id = this.maxId+1; 
+    const cliente_id = 5;
+    const planificacion_id = 8;
+    const estado = "Pendiente";
+    const origen = this.form.get('origen').value;
+    const destino = this.form.get('destino').value;
+    const fecha_solicitud = new Date("2023-06-27");
+    const fecha_entrega = new Date("2023-07-27");
+
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Agrégalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        this.solicitudService.postSolicitudes(id,cliente_id,planificacion_id,estado,origen,destino,fecha_solicitud,fecha_entrega);
+
+        Swal.fire(
+          'Agregado!',
+          'El registro de salida ha sido agregado.',
+          'success'
+        )
+
+        //window.location.reload();
+      }
+    })
+    
+  }
+
+
+
+  async editarDatos(solicitud){
+    console.log("EDITAR DATOS");
+    console.log(solicitud);
+    
+  
+    this.formEdit.patchValue({
+      id:solicitud.id,
+      patente: solicitud.patente,
+      salidaDate: solicitud.salidaDate,
+      clienteID: solicitud.clienteID,
+      planificacionID:solicitud.planificacionID,
+      estado:solicitud.estado,
+      origen:solicitud.origen,
+      destino:solicitud.destino,
+      fecha_solicitud:solicitud.fecha_solicitud,
+      fecha_entrega:solicitud.fecha_entrega
+    });
+
+  }
+
+  async enviarDatosEdit() {
+    
+    const id = this.formEdit.get('id').value;
+    const cliente_id = this.formEdit.get('cliente_id').value;
+    const planificacion_id = this.formEdit.get('planificacion_id').value;
+    const estado = this.formEdit.get('estado').value;
+    const origen = this.formEdit.get('origen').value;
+    const destino = this.formEdit.get('destino').value;
+    const fecha_solicitud = this.formEdit.get('fecha_solicitud').value;
+    const fecha_entrega = this.formEdit.get('fecha_entrega').value;
+
+    
+    Swal.fire({
+      title: 'Está seguro?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, Modifícalo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        this.solicitudService.putSolicitudes(id,cliente_id,planificacion_id,estado,origen,destino,fecha_solicitud,fecha_entrega);
+
+        Swal.fire(
+          'Agregado!',
+          'El registro de solicitud ha sido modificado.',
+          'success'
+        )
+
+        window.location.reload();
+      }
+    })
+
+  }
+
 }
