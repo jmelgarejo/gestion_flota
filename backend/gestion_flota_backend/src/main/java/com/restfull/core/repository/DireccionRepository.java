@@ -9,11 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Direccion;
+import com.restfull.core.services.IDireccionService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class DireccionRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IDireccionService direccionService;
+	
+	@Transactional
+	public Direccion crearDireccion(Direccion newDireccion) {
+		Direccion direccion = newDireccion;
+		try {
+			direccionService.save(direccion);			
+		} catch (Exception e) {
+			direccion = null;
+		}
+		return newDireccion;
+	}
 
 
 	public List<Direccion> getAllDireccions() {

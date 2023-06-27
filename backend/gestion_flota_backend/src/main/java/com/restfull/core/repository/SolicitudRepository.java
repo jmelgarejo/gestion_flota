@@ -9,13 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-
 import com.restfull.core.entities.Solicitud;
+import com.restfull.core.services.ISolicitudService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class SolicitudRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	ISolicitudService solicitudService;
+	
+	@Transactional
+	public Solicitud crearSolicitud(Solicitud newSolicitud) {
+		Solicitud solicitud = newSolicitud;
+		try {
+			solicitudService.save(solicitud);			
+		} catch (Exception e) {
+			solicitud = null;
+		}
+		return newSolicitud;
+	}
 
 
 	public List<Solicitud> getAllSolicitud() {

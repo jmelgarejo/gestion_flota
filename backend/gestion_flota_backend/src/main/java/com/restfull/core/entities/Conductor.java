@@ -1,6 +1,6 @@
 package com.restfull.core.entities;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,14 +18,14 @@ public class Conductor {
     private int empleadoId;
     private String tipoLicencia;
     private String numeroLicencia;
-    private LocalDateTime fechaVencimiento;
+    private Date fechaVencimiento;
 
     // Constructor vacío
     public Conductor() {
     }
 
     // Constructor con parámetros
-    public Conductor(int idConductor, int empleadoId, String tipoLicencia, String numeroLicencia, LocalDateTime fechaVencimiento) {
+    public Conductor(int idConductor, int empleadoId, String tipoLicencia, String numeroLicencia, Date fechaVencimiento) {
         this.idConductor = idConductor;
         this.empleadoId = empleadoId;
         this.tipoLicencia = tipoLicencia;
@@ -66,11 +66,11 @@ public class Conductor {
         this.numeroLicencia = numeroLicencia;
     }
 
-    public LocalDateTime getFechaVencimiento() {
+    public Date getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
+    public void setFechaVencimiento(Date dateVencimiento) {
+        this.fechaVencimiento = dateVencimiento;
     }
 }

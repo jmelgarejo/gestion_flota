@@ -8,11 +8,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Login;
+import com.restfull.core.services.ILoginService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class LoginRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	ILoginService loginService;
+	
+	@Transactional
+	public Login crearLogin(Login newLogin) {
+		Login login = newLogin;
+		try {
+			loginService.save(login);			
+		} catch (Exception e) {
+			login = null;
+		}
+		return newLogin;
+	}
 
 
 	public List<Login> getAllLogins() {

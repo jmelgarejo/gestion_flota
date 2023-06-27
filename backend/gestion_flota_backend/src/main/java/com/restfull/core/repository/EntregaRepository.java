@@ -13,6 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.restfull.core.entities.Entrega;
+import com.restfull.core.services.IEntregaService;
+
+import jakarta.transaction.Transactional;
 
 
 
@@ -21,6 +24,19 @@ public class EntregaRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IEntregaService entregaService;
+	
+	@Transactional
+	public Entrega crearEntrega(Entrega newEntrega) {
+		Entrega entrega = newEntrega;
+		try {
+			entregaService.save(entrega);			
+		} catch (Exception e) {
+			entrega = null;
+		}
+		return newEntrega;
+	}
 
 
 	public List<Entrega> getAllEntregaEstado() {

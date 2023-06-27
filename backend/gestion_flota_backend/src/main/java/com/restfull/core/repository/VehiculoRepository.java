@@ -14,11 +14,27 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.restfull.core.entities.Vehiculo;
+import com.restfull.core.services.IVehiculoService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class VehiculoRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IVehiculoService vehiculoService;
+	
+	@Transactional
+	public Vehiculo crearVehiculo(Vehiculo newVehiculo) {
+		Vehiculo vehiculo = newVehiculo;
+		try {
+			vehiculoService.save(vehiculo);			
+		} catch (Exception e) {
+			vehiculo = null;
+		}
+		return newVehiculo;
+	}
 
 
 	public List<Vehiculo> getAllVehiculos() {

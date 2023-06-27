@@ -9,11 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Comuna;
+import com.restfull.core.services.IComunaService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class ComunaRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IComunaService comunaService;
+	
+	@Transactional
+	public Comuna crearComuna(Comuna newComuna) {
+		Comuna comuna = newComuna;
+		try {
+			comunaService.save(comuna);			
+		} catch (Exception e) {
+			comuna = null;
+		}
+		return newComuna;
+	}
 
 
 	public List<Comuna> getAllComunas() {

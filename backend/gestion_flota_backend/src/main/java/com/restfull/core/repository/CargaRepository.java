@@ -9,12 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Carga;
+import com.restfull.core.services.ICargaService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class CargaRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	ICargaService cargaService;
+	
+	@Transactional
+	public Carga crearCarga(Carga newCarga) {
+		Carga carga = newCarga;
+		try {
+			cargaService.save(carga);			
+		} catch (Exception e) {
+			carga = null;
+		}
+		return newCarga;
+	}
 
 	public List<Carga> getAllCargas() {
 		String sql = "select id_carga,tipo\r\n"

@@ -9,11 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Empleado;
+import com.restfull.core.services.IEmpleadoService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class EmpleadoRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IEmpleadoService empleadoService;
+	
+	@Transactional
+	public Empleado crearEmpleado(Empleado newEmpleado) {
+		Empleado empleado = newEmpleado;
+		try {
+			empleadoService.save(empleado);			
+		} catch (Exception e) {
+			empleado = null;
+		}
+		return newEmpleado;
+	}
 
 
 	public List<Empleado> getAllEmpleados() {

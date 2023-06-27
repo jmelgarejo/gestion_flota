@@ -8,12 +8,29 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.restfull.core.entities.Provincia;
+import com.restfull.core.services.IProvinciaService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class ProvinciaRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IProvinciaService provinciaService;
+	
+	@Transactional
+	public Provincia crearProvincia(Provincia newProvincia) {
+		Provincia provincia = newProvincia;
+		try {
+			provinciaService.save(provincia);			
+		} catch (Exception e) {
+			provincia = null;
+		}
+		return newProvincia;
+	}
 
 
 	public List<Provincia> getAllProvincias() {

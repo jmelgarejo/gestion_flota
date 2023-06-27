@@ -8,12 +8,29 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
 import com.restfull.core.entities.Planificacion;
+import com.restfull.core.services.IPlanificacionService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class PlanificacionRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	IPlanificacionService planificacionService;
+	
+	@Transactional
+	public Planificacion crearPlanificacion(Planificacion newPlanificacion) {
+		Planificacion planificacion = newPlanificacion;
+		try {
+			planificacionService.save(planificacion);			
+		} catch (Exception e) {
+			planificacion = null;
+		}
+		return newPlanificacion;
+	}
 
 
 	public List<Planificacion> getAllPlanificacions() {
