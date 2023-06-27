@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import com.restfull.core.repository.CamionRepository;
 import org.springframework.web.bind.annotation.*;
 import com.restfull.core.entities.Camion;
-import com.restfull.core.entities.Camion;
 
 
 @RestController
