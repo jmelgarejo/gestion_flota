@@ -18,7 +18,6 @@ import jakarta.persistence.TemporalType;
 @Table(name="asignar_administrativos")
 public class AsignarAdministrativo implements Serializable {
 
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;

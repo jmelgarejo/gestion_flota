@@ -15,7 +15,7 @@ public class CamionController {
 	@Autowired
 	private CamionRepository camionRepository;
 
-	@GetMapping("/camions")
+	@GetMapping("/camiones")
 	public List<Camion> query() {
 		return camionRepository.getAllCamions();
 	}

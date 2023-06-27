@@ -10,7 +10,7 @@ public class Vehiculo {
     private String marca;
     private int anio;
     private String modelo;
-    private String consecionario;
+    private String concesionario;
     private String aseguradora;
     private String poliza;
     private Date fechaPoliza;
@@ -35,7 +35,7 @@ public class Vehiculo {
         this.marca = marca;
         this.anio = anio;
         this.modelo = modelo;
-        this.consecionario = consecionario;
+        this.concesionario = consecionario;
         this.aseguradora = aseguradora;
         this.poliza = poliza;
         this.fechaPoliza = fechaPoliza;
@@ -102,12 +102,12 @@ public class Vehiculo {
         this.modelo = modelo;
     }
 
-    public String getConsecionario() {
-        return consecionario;
+    public String getConcesionario() {
+        return concesionario;
     }
 
-    public void setConsecionario(String consecionario) {
-        this.consecionario = consecionario;
+    public void setConcesionario(String concesionario) {
+        this.concesionario = concesionario;
     }
 
     public String getAseguradora() {
