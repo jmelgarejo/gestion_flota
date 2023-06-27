@@ -1,15 +1,41 @@
 package com.restfull.core.entities;
 
-public class Persona {
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="persona")
+public class Persona implements Serializable  {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_persona")
     private int idPersona;
+	@Column(name="run")
     private int run;
+	@Column(name="dv")
     private String dv;
+	@Column(name="nombre")
     private String nombre;
+	@Column(name="primer_apellido")
     private String primerApellido;
+	@Column(name="segund_apellildo")
     private String segundoApellido;
 
     // Constructor vacío
     public Persona() {
+    	this.run = (int) (Math.random() * 99999999 + 1);
+        this.dv = "K";
+        this.nombre = "Pepito";
+        this.primerApellido = "Los ";
+        this.segundoApellido = "Palotes";
     }
 
     // Constructor con parámetros
