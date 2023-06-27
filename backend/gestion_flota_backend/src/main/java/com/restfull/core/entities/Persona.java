@@ -26,7 +26,7 @@ public class Persona implements Serializable  {
     private String nombre;
 	@Column(name="primer_apellido")
     private String primerApellido;
-	@Column(name="segund_apellildo")
+	@Column(name="segundo_apellido")
     private String segundoApellido;
 
     // Constructor vacío

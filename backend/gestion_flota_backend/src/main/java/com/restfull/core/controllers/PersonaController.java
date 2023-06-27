@@ -1,5 +1,7 @@
 package com.restfull.core.controllers;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,26 +10,27 @@ import com.restfull.core.repository.PersonaRepository;
 import org.springframework.web.bind.annotation.*;
 import com.restfull.core.entities.Persona;
 
-
 @RestController
 public class PersonaController {
-
-
+	final static Logger logger = Logger.getLogger(PersonaController.class);
+	
 	@Autowired
 	private PersonaRepository personaRepository;
-	@PostMapping("/purchase")
-	public synchronized ResponseEntity<?> postSeat(@RequestBody Persona persona){
-			return new ResponseEntity<>(persona, HttpStatus.OK);
-	}
 	
 	@PostMapping(value = "/persona")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Void> ejemploPost(@RequestBody Persona persona) {
-        // Realiza cualquier lógica necesaria aquí
+	public ResponseEntity<?> crearPersona(@RequestBody Persona newPersona) {
+		Persona persona = personaRepository.crearPersona(newPersona);
+		return new ResponseEntity<>(persona, HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/persona")
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<?> actualizaPersona(@RequestBody Persona newPersona) {
+		Persona persona = personaRepository.crearPersona(newPersona);
+		return new ResponseEntity<>(persona, HttpStatus.OK);
+	}
 
-        // Si no hay contenido adicional para devolver, simplemente retorna un ResponseEntity vacío
-        return ResponseEntity.ok().build();
-    }
 	@GetMapping("/personas")
 	public List<Persona> query() {
 		return personaRepository.getAllPersonas();

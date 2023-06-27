@@ -6,19 +6,36 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Persona;
+import com.restfull.core.services.IPersonaService;
+
+import jakarta.transaction.Transactional;
 
 @Repository
 public class PersonaRepository {
+
+	public PersonaRepository() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	IPersonaService personaService;
+	
+	@Transactional
 	public Persona crearPersona(Persona newPersona) {
-		Persona persona = new Persona();
-		return persona;
+		Persona persona = newPersona;
+		try {
+			personaService.save(persona);			
+		} catch (Exception e) {
+			persona = null;
+		}
+		return newPersona;
 	}
 	public List<Persona> getAllPersonas() {
 		String sql = "select id_persona,run     ,dv,nombre   ,primer_apellido,segundo_apellido\r\n"
@@ -76,5 +93,6 @@ public class PersonaRepository {
 		});
 		return personaList;
 	}
-
+	
+	
 }

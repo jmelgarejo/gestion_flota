@@ -1,7 +1,21 @@
 package com.restfull.core.entities;
 
-public class Carga {
-    private int idCarga;
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="carga")
+public class Carga implements Serializable  {
+    private static final long serialVersionUID = -5695268070088299515L;
+    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idCarga;
     private int solicitudId;
     private String tipo;
     private float peso;
