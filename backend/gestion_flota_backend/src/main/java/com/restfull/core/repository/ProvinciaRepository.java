@@ -34,28 +34,34 @@ public class ProvinciaRepository {
 
 
 	public List<Provincia> getAllProvincias() {
-		String sql = "select id_provincia\r\n"
+		String sql = "select id_provincia, nombre_provincia, region_id\r\n"
 				+ "from provincia;";
 		List<Provincia> provinciaList = new ArrayList<Provincia>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Provincia provincia = new Provincia();
 			Long provincia_id = ((Number)row.get("id_provincia")).longValue();
+			Long region_id = ((Number)row.get("region_id")).longValue();
 			provincia.setIdProvincia((int)provincia_id.intValue());
+			provincia.setRegionId((int)region_id.intValue());
+			provincia.setNombreProvincia((String)row.get("nombre_provincia"));
 			provinciaList.add(provincia);
 		});
 		return provinciaList;
 	}
 
 	public List<Provincia> getProvinciaById(Long id) {
-		String sql = "select id_provincia\r\n"
+		String sql = "select id_provincia, nombre_provincia, region_id\r\n"
 				+ "from provincia where id_provincia = "+id+" ;";
 		List<Provincia> provinciaList = new ArrayList<Provincia>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Provincia provincia = new Provincia();
 			Long provincia_id = ((Number)row.get("id_provincia")).longValue();
+			Long region_id = ((Number)row.get("region_id")).longValue();
 			provincia.setIdProvincia((int)provincia_id.intValue());
+			provincia.setRegionId((int)region_id.intValue());
+			provincia.setNombreProvincia((String)row.get("nombre_provincia"));
 			provinciaList.add(provincia);
 		});
 		return provinciaList;

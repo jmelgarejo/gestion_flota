@@ -34,7 +34,7 @@ public class RegionRepository {
 
 
 	public List<Region> getAllRegions() {
-		String sql = "select id_region\r\n"
+		String sql = "select id_region,nombre_region\r\n"
 				+ "from region;";
 		List<Region> regionList = new ArrayList<Region>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
@@ -42,13 +42,14 @@ public class RegionRepository {
 			Region region = new Region();
 			Long region_id = ((Number)row.get("id_region")).longValue();
 			region.setIdRegion((int)region_id.intValue());
+			region.setNombreRegion((String)row.get("nombre_region"));
 			regionList.add(region);
 		});
 		return regionList;
 	}
 
 	public List<Region> getRegionById(Long id) {
-		String sql = "select id_region\r\n"
+		String sql = "select id_region,nombre_region\r\n"
 				+ "from region where id_region = "+id+" ;";
 		List<Region> regionList = new ArrayList<Region>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
@@ -56,6 +57,7 @@ public class RegionRepository {
 			Region region = new Region();
 			Long region_id = ((Number)row.get("id_region")).longValue();
 			region.setIdRegion((int)region_id.intValue());
+			region.setNombreRegion((String)row.get("nombre_region"));
 			regionList.add(region);
 		});
 		return regionList;

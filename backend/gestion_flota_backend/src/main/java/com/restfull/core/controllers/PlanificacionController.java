@@ -30,7 +30,7 @@ public class PlanificacionController {
 		return new ResponseEntity<>(planificacion, HttpStatus.OK);
 	}
 	
-	@GetMapping("/planificacions")
+	@GetMapping("/planificaciones")
 	public List<Planificacion> query() {
 		return planificacionRepository.getAllPlanificacions();
 	}

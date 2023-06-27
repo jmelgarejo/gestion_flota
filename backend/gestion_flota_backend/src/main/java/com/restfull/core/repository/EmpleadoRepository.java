@@ -33,28 +33,36 @@ public class EmpleadoRepository {
 
 
 	public List<Empleado> getAllEmpleados() {
-		String sql = "select id_empleado\r\n"
+		String sql = "SELECT id_empleado, persona_id, tipo_empleado, tipo_contrato\r\n"
 				+ "from empleado;";
 		List<Empleado> empleadoList = new ArrayList<Empleado>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Empleado empleado = new Empleado();
 			Long empleado_id = ((Number)row.get("id_empleado")).longValue();
+			Long persona_id = ((Number)row.get("persona_id")).longValue();
 			empleado.setIdEmpleado((int)empleado_id.intValue());
+			empleado.setPersonaId((int)persona_id.intValue());
+			empleado.setTipoEmpleado((String)row.get("tipo_empleado"));
+			empleado.setTipoContrato((String)row.get("tipo_contrato"));
 			empleadoList.add(empleado);
 		});
 		return empleadoList;
 	}
 
 	public List<Empleado> getEmpleadoById(Long id) {
-		String sql = "select id_empleado\r\n"
+		String sql = "SELECT id_empleado, persona_id, tipo_empleado, tipo_contrato\r\n"
 				+ "from empleado where id_empleado = "+id+" ;";
 		List<Empleado> empleadoList = new ArrayList<Empleado>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Empleado empleado = new Empleado();
 			Long empleado_id = ((Number)row.get("id_empleado")).longValue();
+			Long persona_id = ((Number)row.get("persona_id")).longValue();
 			empleado.setIdEmpleado((int)empleado_id.intValue());
+			empleado.setPersonaId((int)persona_id.intValue());
+			empleado.setTipoEmpleado((String)row.get("tipo_empleado"));
+			empleado.setTipoContrato((String)row.get("tipo_contrato"));
 			empleadoList.add(empleado);
 		});
 		return empleadoList;
