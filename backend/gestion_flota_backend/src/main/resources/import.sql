@@ -3,3 +3,4 @@ INSERT INTO registrar_salidas ( salida, patente, estado, create_at) VALUES('si',
 INSERT INTO registrar_salidas ( salida, patente, estado, create_at) VALUES('no', 'AMDS-13', 'normal','1900-01-01');
 INSERT INTO entregas ( cliente, estado, create_at) VALUES('ENTEL', 'PENDIENTE', '2023-01-01');
 INSERT INTO entregas ( cliente, estado, create_at) VALUES('APPLE', 'TERMINADA', '2023-01-01');
+INSERT INTO entregas ( cliente, estado, create_at) VALUES('SAMSUNG', 'PENDIENTE', '2023-05-05');

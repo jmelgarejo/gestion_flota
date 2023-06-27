@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.restfull.core.entities.Entrega;
+import com.restfull.core.repository.CamionRepository;
+import com.restfull.core.repository.EntregaRepository;
 import com.restfull.core.services.IEntregaService;
 
 
@@ -33,6 +35,14 @@ public class EntregaController {
 		return entregaService.findAll();
 		
 	}	
+	@Autowired
+	private EntregaRepository entregaRepository;
+
+	@GetMapping("/entregaEstado")
+	public List<Entrega> index2(){
+		return entregaRepository.getAllEntregaEstado();
+	}
+	
 	
 	
 	@GetMapping("/entrega/{id}")

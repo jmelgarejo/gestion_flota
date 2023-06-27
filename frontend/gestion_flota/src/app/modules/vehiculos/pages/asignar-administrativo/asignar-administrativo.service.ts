@@ -9,8 +9,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AsignarAdministrativoService {
- // private urlEndPoint:string = "http://localhost:8080/api/asignadmin";
- private urlEndPoint:string ='http://167.99.24.209:8080/api/asignadmin'
+  private urlEndPoint:string = "http://localhost:8080/api/asignadmin";
+ //private urlEndPoint:string ='http://167.99.24.209:8080/api/asignadmin'
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor( private http: HttpClient) { }
