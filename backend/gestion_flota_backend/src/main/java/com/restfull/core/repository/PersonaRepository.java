@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Persona;
@@ -15,7 +16,10 @@ public class PersonaRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
+	public Persona crearPersona(Persona newPersona) {
+		Persona persona = new Persona();
+		return persona;
+	}
 	public List<Persona> getAllPersonas() {
 		String sql = "select id_persona,run     ,dv,nombre   ,primer_apellido,segundo_apellido\r\n"
 				+ "from persona ;";
