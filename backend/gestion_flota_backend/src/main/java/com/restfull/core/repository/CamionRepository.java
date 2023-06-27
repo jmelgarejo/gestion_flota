@@ -9,12 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import com.restfull.core.entities.Camion;
+import com.restfull.core.entities.Camion;
+import com.restfull.core.services.ICamionService;
+import com.restfull.core.services.ICamionService;
 
 @Repository
 public class CamionRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
+	@Autowired
+	ICamionService camionService;
 
 	public List<Camion> getAllCamions() {
 		String sql = "select id_camion,vehiculo_id,capacidad,tipo\r\n"
@@ -50,6 +54,16 @@ public class CamionRepository {
 			camionList.add(camion);
 		});
 		return camionList;
+	}
+
+	public Camion crearCamion(Camion newCamion) {
+		Camion camion = newCamion;
+		try {
+			camionService.save(camion);			
+		} catch (Exception e) {
+			camion = null;
+		}
+		return newCamion;
 	}
 
 

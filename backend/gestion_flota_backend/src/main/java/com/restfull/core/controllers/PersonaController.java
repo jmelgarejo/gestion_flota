@@ -1,7 +1,6 @@
 package com.restfull.core.controllers;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +11,6 @@ import com.restfull.core.entities.Persona;
 
 @RestController
 public class PersonaController {
-	final static Logger logger = Logger.getLogger(PersonaController.class);
 	
 	@Autowired
 	private PersonaRepository personaRepository;
