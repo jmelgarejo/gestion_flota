@@ -3,8 +3,19 @@ package com.restfull.core.entities;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="planificacion")
 public class Planificacion {
-    private int idPlanificacion;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idPlanificacion;
     private int conductorId;
     private int camionId;
     private LocalDateTime fechaCreacion;

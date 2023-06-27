@@ -2,7 +2,18 @@ package com.restfull.core.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="solicitud")
 public class Solicitud {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idSolicitud;
     private int clienteId;
     private Integer planificacionId;

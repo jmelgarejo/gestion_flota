@@ -1,7 +1,18 @@
 package com.restfull.core.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="cliente")
 public class Perfil {
-    private int idPerfil;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idPerfil;
     private String nombrePerfil;
     private String descripcionPerfil;
     private String codigoPerfil;

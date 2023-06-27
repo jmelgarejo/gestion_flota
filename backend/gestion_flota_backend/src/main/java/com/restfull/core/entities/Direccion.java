@@ -1,7 +1,18 @@
 package com.restfull.core.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="direccion")
 public class Direccion {
-    private int idDireccion;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)    
+	private int idDireccion;
     private String calleNumero;
     private String adicional;
     private int regionId;

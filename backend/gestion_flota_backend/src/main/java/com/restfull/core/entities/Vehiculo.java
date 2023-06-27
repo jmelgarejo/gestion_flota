@@ -2,7 +2,18 @@ package com.restfull.core.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="vehiculo")
 public class Vehiculo {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idVehiculo;
     private String patente;
     private String numeroMotor;
