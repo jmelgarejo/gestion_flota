@@ -33,30 +33,40 @@ public class CargaRepository {
 	}
 
 	public List<Carga> getAllCargas() {
-		String sql = "select id_carga,tipo\r\n"
+		String sql = "select id_carga, solicitud_id, tipo, peso, dimension, detalle\r\n"
 				+ "from carga;";
 		List<Carga> cargaList = new ArrayList<Carga>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Carga carga = new Carga();
 			Long carga_id = ((Number)row.get("id_carga")).longValue();
+			Long solicitud_id = ((Number)row.get("solicitud_id")).longValue();
 			carga.setIdCarga((int)carga_id.intValue());
+			carga.setSolicitudId((int)solicitud_id.intValue());
 			carga.setTipo((String)row.get("tipo"));
+			carga.setPeso((float)row.get("peso"));
+			carga.setDimension((String)row.get("dimension"));
+			carga.setDetalle((String)row.get("detalle"));
 			cargaList.add(carga);
 		});
 		return cargaList;
 	}
 
 	public List<Carga> getCargaById(Long id) {
-		String sql = "select id_carga,tipo\r\n"
+		String sql = "select id_carga, solicitud_id, tipo, peso, dimension, detalle\r\n"
 				+ "from carga where id_carga = "+id+" ;";
 		List<Carga> cargaList = new ArrayList<Carga>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Carga carga = new Carga();
 			Long carga_id = ((Number)row.get("id_carga")).longValue();
+			Long solicitud_id = ((Number)row.get("solicitud_id")).longValue();
 			carga.setIdCarga((int)carga_id.intValue());
+			carga.setSolicitudId((int)solicitud_id.intValue());
 			carga.setTipo((String)row.get("tipo"));
+			carga.setPeso((float)row.get("peso"));
+			carga.setDimension((String)row.get("dimension"));
+			carga.setDetalle((String)row.get("detalle"));
 			cargaList.add(carga);
 		});
 		return cargaList;

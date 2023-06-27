@@ -33,31 +33,42 @@ public class ComunaRepository {
 
 
 	public List<Comuna> getAllComunas() {
-		String sql = "select id_comuna\r\n"
+		String sql = "SELECT id_comuna, nombre_comuna, provincia_id, region_id\r\n"
 				+ "from comuna;";
 		List<Comuna> comunaList = new ArrayList<Comuna>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Comuna comuna = new Comuna();
 			Long comuna_id = ((Number)row.get("id_comuna")).longValue();
+			Long provincia_id = ((Number)row.get("provincia_id")).longValue();
+			Long region_id = ((Number)row.get("region_id")).longValue();
 			comuna.setIdComuna((int)comuna_id.intValue());
+			comuna.setNombreComuna((String)row.get("nombre_comuna"));
+			comuna.setProvinciaId((int)provincia_id.intValue());
+			comuna.setRegionId((int)region_id.intValue());
+			
 			comunaList.add(comuna);
 		});
 		return comunaList;
 	}
 
 	public List<Comuna> getComunaById(Long id) {
-		String sql = "select id_comuna\r\n"
+		String sql = "SELECT id_comuna, nombre_comuna, provincia_id, region_id\r\n"
 				+ "from comuna where id_comuna = "+id+" ;";
 		List<Comuna> comunaList = new ArrayList<Comuna>();
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
 		rows.forEach(row -> {
 			Comuna comuna = new Comuna();
 			Long comuna_id = ((Number)row.get("id_comuna")).longValue();
+			Long provincia_id = ((Number)row.get("provincia_id")).longValue();
+			Long region_id = ((Number)row.get("region_id")).longValue();
 			comuna.setIdComuna((int)comuna_id.intValue());
+			comuna.setNombreComuna((String)row.get("nombre_comuna"));
+			comuna.setProvinciaId((int)provincia_id.intValue());
+			comuna.setRegionId((int)region_id.intValue());
+			
 			comunaList.add(comuna);
-		});
-		return comunaList;
+		});		return comunaList;
 	}
 
 
